@@ -12,7 +12,8 @@ def about():
 
 @app.route('/teste/<id>')
 def estudante(id):
-    return turma[id]
+    estudante = turma[id]
+    return render_template('estudante.html', estudante=estudante)
 
     
 turma = {"1": {"nome": "João", "idade": 20, "curso": "Engenharia"},
