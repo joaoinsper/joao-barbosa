@@ -16,7 +16,7 @@ def estudante(id):
 
     
 turma = {"1": {"nome": "João", "idade": 20, "curso": "Engenharia"},
-         "2": {"nome": "Maria", "idade": 22, "curso": "Medicina"},
+         "2": {"nome": "Joselita", "idade": 22, "curso": "Medicina"},
          "3": {"nome": "José", "idade": 21, "curso": "Direito"},
          "4": {"nome": "Ana", "idade": 23, "curso": "Administração"},
          "5": {"nome": "Pedro", "idade": 24, "curso": "Contabilidade"}}
