@@ -52,12 +52,26 @@
     <div class="container">
         <h2>Abaixo, está o seu texto traduzido!</h2>
         <br>
-        <p>{{resultado}}</p>
+        <p id="textoTraduzido">{{resultado}}</p>
+        <button onclick="copiarTexto()" class="btn btn-primary">Copiar tradução</button>
     </div>
     <br>
     <footer>
         <p>Projeto final do Master em Jornalismo de Dados, Automação e Data Storytelling do Insper. © 2024 João Barbosa.</p>
     </footer>
+
+    <script>
+        function copiarTexto() {
+            var textoTraduzido = document.getElementById("textoTraduzido");
+            var range = document.createRange();
+            range.selectNode(textoTraduzido);
+            window.getSelection().removeAllRanges(); // Limpa a seleção atual
+            window.getSelection().addRange(range); // Seleciona o texto
+            document.execCommand("copy"); // Copia o texto para a área de transferência
+            window.getSelection().removeAllRanges(); // Limpa a seleção
+            alert("Texto copiado!"); // Exibe um alerta para o usuário
+        }
+    </script>
 </body>
 </html>
 
