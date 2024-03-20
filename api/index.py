@@ -24,12 +24,16 @@ def about():
 def traducao():
     dicionario = db.joao_tradutor
     palavras = [x for x in dicionario.find()]
+    dicionario_final = {}
+    for termo in palavras:
+        dicionario_final[termo['termo_portugues']] = termo['traducao']
+
     texto = request.form.get('texto_a_traduzir')
     response = client.chat.completions.create(
         model="gpt-4",
         messages=[
             {"role": "system", "content": f"Traduza o seguinte texto para inglês, mas considere o valor do\
-            dicionário {palavras} como tradução para as palavras que estiverem nas chaves desse mesmo dicionário."},
+            dicionário {dicionario_final} como tradução para as palavras que estiverem nas chaves desse mesmo dicionário."},
             {"role": "user", "content": texto}
         ],
         temperature=0.6,
