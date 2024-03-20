@@ -1,4 +1,15 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+from openai import OpenAI
+from dotenv import load_dotenv, find_dotenv
+import os
+from pymongo import MongoClient
+
+load_dotenv(find_dotenv())
+api_key = os.getenv('OPENAI_API_KEY')
+client = OpenAI()
+
+uri = f'mongodb://insper:R9nygQhGTP9Z0Cf2s@SG-insperdata-44537.servers.mongodirector.com:27017/mjd_2024'
+db = MongoClient(uri, ssl=True, tlsAllowInvalidCertificates=True)['mjd_2024']
 
 app = Flask(__name__)
 
@@ -10,14 +21,20 @@ def home():
 def about():
     return 'About'
 
-@app.route('/teste/<id>')
-def estudante(id):
-    estudante = turma[id]
-    return render_template('estudante.html', estudante=estudante)
-
+@app.route('/tradutor', methods=['GET', 'POST'])
+def traducao():
+    dicionario = db.joao_tradutor
+    palavras = [x for x in dicionario.find()]
+    texto = request.form.get('texto_a_traduzir')
+    response = client.chat.completions.create(
+        model="gpt-4",
+        messages=[
+            {"role": "system", "content": f"Traduza o seguinte texto para inglês, mas considere o valor do\
+            dicionário {palavras} como tradução para as palavras que estiverem nas chaves desse mesmo dicionário."},
+            {"role": "user", "content": texto}
+        ],
+        temperature=0.6,
+        top_p=1
+    )
+    return render_template('tradutor.html', resultado = response.choices[0].message.content)    
     
-turma = {"1": {"nome": "João", "idade": 20, "curso": "Engenharia"},
-         "2": {"nome": "Joselita", "idade": 22, "curso": "Medicina"},
-         "3": {"nome": "José", "idade": 21, "curso": "Direito"},
-         "4": {"nome": "Ana", "idade": 23, "curso": "Administração"},
-         "5": {"nome": "Pedro", "idade": 24, "curso": "Contabilidade"}}
