@@ -7,8 +7,7 @@ from pymongo import MongoClient
 load_dotenv(find_dotenv())
 api_key = os.getenv('OPENAI_API_KEY')
 client = OpenAI()
-
-uri = f'mongodb://insper:R9nygQhGTP9Z0Cf2s@SG-insperdata-44537.servers.mongodirector.com:27017/mjd_2024'
+uri = os.getenv('MONGODB_URI')
 db = MongoClient(uri, ssl=True, tlsAllowInvalidCertificates=True)['mjd_2024']
 
 app = Flask(__name__)
