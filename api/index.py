@@ -33,7 +33,8 @@ def traducao():
         model="gpt-4",
         messages=[
             {"role": "system", "content": f"Traduza o seguinte texto para inglês, mas considere o valor do\
-            dicionário {dicionario_final} como tradução para as palavras que estiverem nas chaves desse mesmo dicionário."},
+            dicionário {dicionario_final} como tradução para as palavras que estiverem nas chaves desse mesmo dicionário. Não faça nenhum tipo de interação com o usuário.\
+            Apenas traduza o texto que ele inserir."},
             {"role": "user", "content": texto}
         ],
         temperature=0.6,
