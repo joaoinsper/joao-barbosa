@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualização do banco de dados</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .curso {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+
+        .form-container {
+            text-align: center;
+        }
+
+        select,
+        input[type="submit"] {
+            margin-top: 10px;
+        }
+
+        .botao {
+            display: inline-block;
+            text-align: center;
+            background-color: rgb(164, 43, 43);
+            color: #fff !important;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 50px;
+            border: none;
+            font-weight: bold;
+            ;
+        }
+
+        footer {
+            background-color: #f9f9f9;
+            padding: 1px;
+            text-align: center;
+            font-size: 10px;
+            color: #555;
+        }
+    </style>
+
+<body>
+    <div class="container">
+        <div class="curso">
+            <h1>Escolha um termo:</h1>
+            <form action="/atualizacao" method="post">
+                <select name="termo_escolhido">
+                    {% for termo in termos %}
+                    <option value="{{ termo }}">{{ termo }}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="Selecionar">
+            </form>
+        </div>
+    </div>
+    <footer>
+        <p>Projeto final do Master em Jornalismo de Dados, Automação e Data Storytelling do Insper. © 2024 João Barbosa.
+        </p>
+    </footer>
+</body>
+
+</html>
