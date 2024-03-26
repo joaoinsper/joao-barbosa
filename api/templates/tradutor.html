@@ -35,7 +35,8 @@
         }
 
         p {
-            white-space: pre-wrap; /* para manter a formatação do texto */
+            white-space: pre-wrap;
+            /* para manter a formatação do texto */
         }
 
         footer {
@@ -53,11 +54,15 @@
         <h2>Abaixo, está o seu texto traduzido!</h2>
         <br>
         <p id="textoTraduzido">{{resultado}}</p>
-        <button onclick="copiarTexto()" class="btn btn-primary">Copiar tradução</button>
+        <div style="display: flex; justify-content: space-between;">
+            <button onclick="copiarTexto()" class="btn btn-primary">Copiar tradução</button>
+            <a href="https://joao-barbosa.vercel.app/" class="btn btn-primary">Nova tradução</a>
+        </div>
     </div>
     <br>
     <footer>
-        <p>Projeto final do Master em Jornalismo de Dados, Automação e Data Storytelling do Insper. © 2024 João Barbosa.</p>
+        <p>Projeto final do Master em Jornalismo de Dados, Automação e Data Storytelling do Insper. © 2024 João Barbosa.
+        </p>
     </footer>
 
     <script>
@@ -73,5 +78,5 @@
         }
     </script>
 </body>
-</html>
 
+</html>
