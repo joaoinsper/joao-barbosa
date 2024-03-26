@@ -16,8 +16,12 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-@app.route('/incluir', methods=['POST'])
+@app.route('/incluir')
 def incluir():
+    return render_template('incluir.html')
+
+@app.route('/sucesso', methods=['POST'])
+def sucesso():
     termo_br = request.form.get('termo_br')
     termo_en = request.form.get('termo_en')
     novos_dados = {'termo_portugues': termo_br, 'traducao': termo_en}
