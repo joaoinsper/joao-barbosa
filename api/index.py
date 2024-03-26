@@ -16,9 +16,13 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-@app.route('/about')
-def about():
-    return 'About'
+@app.route('/incluir', methods=['POST'])
+def incluir():
+    termo_br = request.form.get('termo_br')
+    termo_en = request.form.get('termo_en')
+    novos_dados = {'termo_portugues': termo_br, 'traducao': termo_en}
+    db.joao_tradutor.insert_one(novos_dados)
+    return 'Enviado com sucesso.'
 
 @app.route('/tradutor', methods=['GET', 'POST'])
 def traducao():
